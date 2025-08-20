@@ -1,0 +1,116 @@
+/* style2.css */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #2b5876, #4e4376);
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+header h1 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+header nav a {
+    color: #00ffcc;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+header nav a:hover {
+    color: #fff;
+}
+
+main {
+    padding: 40px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+#profile-section, #events-section {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input, 
+.form-group select, 
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background-color: #00ffcc;
+    border: none;
+    padding: 10px 20px;
+    color: #000;
+    font-weight: bold;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #007acc;
+    color: #fff;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    padding: 15px;
+    text-align: left;
+}
+
+table th {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+table tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+table a {
+    color: #00ffcc;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+table a:hover {
+    color: #fff;
+}

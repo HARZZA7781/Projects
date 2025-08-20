@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filter Player Profiles</title>
+    <link rel="icon" type="image/x-icon" href="../static/logo.png">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #f0f4f8, #d9e7ff);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Container Styling */
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        /* Header Styling */
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .heading {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #34495e;
+            text-transform: capitalize;
+        }
+
+        /* Form Styling */
+        .search-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .label {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            width: 100%;
+            text-align: left;
+        }
+
+        .input-field {
+            width: 90%;
+            padding: 14px;
+            font-size: 1.1rem;
+            border: 2px solid #bdc3c7;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-field:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 8px rgba(52, 152, 219, 0.2);
+        }
+
+        .submit-button {
+            padding: 12px 40px;
+            font-size: 1.2rem;
+            background: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background: #2980b9;
+        }
+
+        .submit-button:active {
+            background: #2471a3;
+        }
+
+        /* Divider Styling */
+        .divider {
+            border: 1px solid #eee;
+            margin: 30px 0;
+        }
+
+        /* Players Section Styling */
+        .players-heading {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .player-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .player-item {
+            background: #f9f9f9;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .player-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .player-name {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #1abc9c;
+        }
+
+        .player-details {
+            margin-top: 10px;
+        }
+
+        .player-details span {
+            display: block;
+            font-size: 1rem;
+            color: #7f8c8d;
+        }
+
+        .no-players {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #e74c3c;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h2 class="heading">Filter Basketball Players</h2>
+        </header>
+
+        <form action="/filter_basketball" method="POST" class="search-form">
+            <label for="location" class="label">Enter Location:</label>
+            <input type="text" name="location" placeholder="Enter location" class="input-field" required>
+            <button type="submit" class="submit-button">Search</button>
+        </form>
+
+        <hr class="divider">
+
+        <h3 class="players-heading">Players Found:</h3>
+        <ul class="player-list">
+            {% for player in players %}
+                <li class="player-item">
+                    <strong class="player-name">{{ player[1] }}</strong> ({{ player[2] }} years old)
+                    <div class="player-details">
+                        <span>Height: {{ player[4] }} cm</span>
+                        <span>Position: {{ player[5] }}</span>
+                        <span>Dominant hand: {{ player[6] }}</span>
+                        <span>Experience: {{ player[7] }}</span>
+                        <span>Contact: {{ player[8] }}</span>
+                    </div>
+                </li>
+            {% else %}
+                <p class="no-players">No players found for this location.</p>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

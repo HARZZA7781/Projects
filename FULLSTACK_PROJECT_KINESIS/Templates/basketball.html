@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Basketball Player Profile</title>
+    <link rel="icon" type="image/x-icon" href="../static/logo.png">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #e74c3c;
+            --secondary-color: #2ecc71;
+            --background-color: #f4f4f9;
+            --header-background: rgba(0, 0, 0, 0.7);
+            --footer-background: #2c3e50;
+            --button-hover: #27ae60;
+            --button-active: #229954;
+            --text-color: #333;
+            --form-bg: rgba(255, 255, 255, 0.85);
+            --border-color: #ccc;
+            --focus-border: #e74c3c;
+            --link-hover: #00c6ff;
+        }
+
+        body {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;  /* Align content to the top */
+    align-items: center;
+    min-height: 100vh;  /* Ensure it takes the full height of the viewport */
+    margin: 0;  /* Remove any default margin */
+    position: relative; /* Ensure the pseudo-element is positioned relative to the body */
+    padding: 0 20px;
+    padding-top: 120px; /* Adjusted padding to create space for the fixed header */
+    overflow-x: hidden; /* Prevent horizontal overflow */
+    overflow-y: auto; /* Allow vertical scrolling */
+}
+
+/* Pseudo-element for the background image with blur */
+body::before {
+    content: ''; /* Empty content for the pseudo-element */
+    position: absolute; /* Position it behind the body content */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('static/bask.court.jpg'); /* Path to the image */
+    background-size: cover; /* Ensures image covers the entire viewport */
+    background-position: center; /* Centers the image */
+    filter: blur(10px); /* Apply the blur effect */
+    z-index: -1; /* Ensure it stays behind the content */
+}
+
+        header {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: var(--header-background);
+            color: #fff;
+            padding: 15px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+
+        header .logo h1 {
+            font-size: 1.8rem;
+            color: #fff;
+            font-weight: 700;
+            margin-left: 10px;
+        }
+
+        header nav a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        header nav a:hover {
+            color: var(--primary-color);
+        }
+
+        .profile-form-container {
+            background-color: var(--form-bg);
+            border-radius: 15px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
+            backdrop-filter: blur(8px);
+            border: 2px solid var(--border-color);
+            margin-top: 80px;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            text-align: center;
+            color: var(--text-color);
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #444;
+            font-size: 1rem;
+        }
+
+        input, select, textarea, button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 6px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--focus-border);
+            outline: none;
+            box-shadow: 0 0 5px rgba(231, 76, 60, 0.7);
+        }
+
+        button {
+            background-color: var(--secondary-color);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s ease;
+            padding: 14px;
+            font-size: 1.1rem;
+        }
+
+        button:hover {
+            background-color: var(--button-hover);
+        }
+
+        button:active {
+            background-color: var(--button-active);
+        }
+
+        textarea {
+            resize: none;
+            height: 120px;
+        }
+
+        footer {
+            width: 100%;
+            background-color: var(--footer-background);
+            color: #fff;
+            padding: 30px 0;
+            margin-top: 50px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        footer p {
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        footer .social-links a {
+            color: var(--link-hover);
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 1.2rem;
+        }
+
+        footer .social-links a:hover {
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            header nav {
+                margin-top: 10px;
+            }
+
+            .profile-form-container {
+                padding: 25px;
+                max-width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="static/logo.png" alt="Logo" style="width: 50px; height: 50px; vertical-align: middle;">
+            <h1>KINESIS</h1>
+        </div>
+        <nav>
+            <a href="/original">Home</a>
+            
+        </nav>
+    </header>
+
+    <div class="profile-form-container">
+        <h2>Create Basketball Player Profile</h2>
+        <form action="/basketball" method="POST">
+            <div class="form-group">
+                <label for="player-name">Player Name:</label>
+                <input type="text" id="player-name" name="player_name" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+                <label for="player-age">Age:</label>
+                <input type="number" id="player-age" name="player_age" placeholder="Enter your age" min="0" required>
+            </div>
+            <div class="form-group">
+                <label for="player-location">Location</label>
+                <input type="text" id="player-location" name="player_location" placeholder="Enter your location" required>
+            </div>
+            <div class="form-group">
+                <label for="player-height">Height:</label>
+                <input type="number" id="player-height" name="player_height" placeholder="Enter your height" min="140" required>
+            </div>
+            <div class="form-group">
+                <label for="player-position">Position:</label>
+                <select id="player-position" name="player_position" required>
+                    <option value="" disabled selected>Select your position</option>
+                    <option value="Point Guard">Point Guard</option>
+                    <option value="Shooting Guard">Shooting Guard</option>
+                    <option value="Small Forward">Small Forward</option>
+                    <option value="Power Forward">Power Forward</option>
+                    <option value="Center">Center</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="dominant-hand">Dominant Hand:</label>
+                <select id="dominant-hand" name="dominant_hand" required>
+                    <option value="" disabled selected>Select dominant hand</option>
+                    <option value="Right">Right</option>
+                    <option value="Left">Left</option>
+                    <option value="Ambidextrous">Ambidextrous</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="experience">Experience Level:</label>
+                <select id="experience" name="experience" required>
+                    <option value="" disabled selected>Select experience level</option>
+                    <option value="Beginner">Beginner</option>
+                    <option value="Intermediate">Intermediate</option>
+                    <option value="Professional">Professional</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="player-contact-number">Contact Number:</label>
+                <input type="tel" id="player-contact-number" name="player_contact_number" placeholder="Enter your Contact Number" required 
+                       pattern="^[0-9]{1,10}$" title="Please enter a valid phone number (up to 10 digits)">
+            </div>
+            <button type="submit">Create Profile</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Hoopsters. All rights reserved.</p>
+        <div class="social-links">
+            <a href="https://www.facebook.com/">Facebook</a> |
+            <a href="https://twitter.com/">Twitter</a> |
+            <a href="https://www.instagram.com/">Instagram</a>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,186 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body and General Layout */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Header Section */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0, 4, 8, 0.6); /* Transparent dark blue */
+    padding: 20px 40px;
+    position: sticky;
+    top: 0;
+    z-index: 10; /* Keeps the header on top */
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+}
+
+header .logo img {
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+}
+
+header h1 {
+    font-size: 2rem;
+    color: #fff;
+}
+
+header nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+header nav a:hover {
+    color: #3498db;
+}
+
+/* Welcome Section */
+#welcome {
+    text-align: center;
+    padding: 80px 20px;
+    background-image: url('/static/AdobeStock_286933595_Preview.jpeg');
+    background-size: cover;
+    color: #fff;
+    font-family: 'Oswald', sans-serif;
+
+}
+
+#welcome h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+#welcome p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.8;
+    font-family: 'Oswald', sans-serif;
+}
+
+/* About Section */
+#about {
+    padding: 60px 20px;
+    background-color: #ecf0f1;
+    text-align: center;
+}
+
+#about h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+#about p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+/* Games Section */
+#games {
+    padding: 60px 20px;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+}
+
+#games h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+}
+
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.game-card {
+    background-color: #fff;
+    border-radius: 16px; /* Larger rounding for softer edges */
+    overflow: hidden; /* Ensure the content stays inside rounded corners */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Slightly darker shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left; /* Align text to the left */
+    max-width: 250px; /* Optional: Set card width */
+    margin: 20px; /* Space between cards */
+}
+
+.game-card:hover {
+    transform: translateY(-10px);
+}
+
+.game-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.game-card h3 {
+    margin-top: 15px;
+    font-family:monospace;
+    font-size: 1.5rem;
+    color: #2c3e50;
+}
+/* Footer Section */
+footer {
+    background-color: #2c3e50;
+    color: #fff;
+    padding: 30px 40px;
+    text-align: center;
+}
+
+footer p {
+    margin-bottom: 20px;
+    font-size: 1rem;
+}
+
+footer .social-links {
+    margin-bottom: 20px;
+}
+
+footer .social-links a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+footer .social-links a:hover {
+    color: #3498db;
+}
+
+footer nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+footer nav a:hover {
+    color: #3498db;
+}

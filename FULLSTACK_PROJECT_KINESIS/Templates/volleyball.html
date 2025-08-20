@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Volleyball Player Profile</title>
+    <link rel="icon" type="image/x-icon" href="../static/logo.png">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* CSS Variables for Colors */
+        :root {
+            --primary-color: #f39c12;
+            --secondary-color: #2ecc71;
+            --background-color: #f7f9fc;
+            --header-background: rgba(0, 0, 0, 0.7);
+            --footer-background: #34495e;
+            --button-hover: #27ae60;
+            --button-active: #1e8449;
+            --text-color: #333;
+            --form-bg: rgba(255, 255, 255, 0.9);
+            --border-color: #ccc;
+            --focus-border: #f39c12;
+            --link-hover: #e67e22;
+        }
+
+        /* Body and General Layout */
+        body {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;  /* Align content to the top */
+    align-items: center;
+    min-height: 100vh;  /* Ensure it takes the full height of the viewport */
+    margin: 0;  /* Remove any default margin */
+    position: relative; /* Ensure the pseudo-element is positioned relative to the body */
+    padding: 0 20px;
+    padding-top: 120px; /* Adjusted padding to create space for the fixed header */
+    overflow-x: hidden; /* Prevent horizontal overflow */
+    overflow-y: auto; /* Allow vertical scrolling */
+}
+
+/* Pseudo-element for the background image with blur */
+body::before {
+    content: ''; /* Empty content for the pseudo-element */
+    position: absolute; /* Position it behind the body content */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('static/voll.court.jpg'); /* Path to the image */
+    background-size: cover; /* Ensures image covers the entire viewport */
+    background-position: center; /* Centers the image */
+    filter: blur(10px); /* Apply the blur effect */
+    z-index: -1; /* Ensure it stays behind the content */
+}
+
+        /* Header Section */
+        header {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: var(--header-background);
+            color: #fff;
+            padding: 15px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+
+        header .logo h1 {
+            font-size: 1.8rem;
+            color: #fff;
+            font-weight: 700;
+            margin-left: 10px;
+        }
+
+        header nav a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        header nav a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Profile Form Container */
+        .profile-form-container {
+            background-color: var(--form-bg);
+            border-radius: 15px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
+            backdrop-filter: blur(8px);
+            border: 2px solid var(--border-color);
+            margin-top: 80px; /* Added margin-top to ensure form does not overlap the fixed header */
+            box-sizing: border-box;
+        }
+
+        h2 {
+            text-align: center;
+            color: var(--text-color);
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        /* Form Group Styles */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #444;
+            font-size: 1rem;
+        }
+
+        input, select, textarea, button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 6px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--focus-border);
+            outline: none;
+            box-shadow: 0 0 5px rgba(243, 156, 18, 0.7);
+        }
+
+        button {
+            background-color: var(--secondary-color);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s ease;
+            padding: 14px;
+            font-size: 1.1rem;
+        }
+
+        button:hover {
+            background-color: var(--button-hover);
+        }
+
+        button:active {
+            background-color: var(--button-active);
+        }
+
+        textarea {
+            resize: none;
+            height: 120px;
+        }
+
+        /* Footer Section */
+        footer {
+            width: 100%;
+            background-color: var(--footer-background);
+            color: #fff;
+            padding: 30px 0;
+            text-align: center;
+            position: relative;
+            left: 0;
+            right: 0;
+        }
+
+        footer p {
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        footer .social-links a {
+            color: var(--link-hover);
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 1.2rem;
+        }
+
+        footer .social-links a:hover {
+            color: var(--primary-color);
+        }
+
+        footer nav a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        footer nav a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            header .logo h1 {
+                font-size: 1.6rem;
+                margin-top: 10px;
+            }
+
+            header nav {
+                margin-top: 10px;
+            }
+
+            header nav a {
+                font-size: 1rem;
+                margin: 5px 0;
+            }
+
+            .profile-form-container {
+                padding: 25px;
+                max-width: 90%;
+                margin-top: 100px; /* Increased margin-top for smaller screens */
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            footer nav a {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <img src="static/logo.png" alt="KINESIS Logo" style="width: 100px; height: 50px; vertical-align: middle;">
+            <h1>KINESIS</h1>
+        </div>
+        <nav>
+            <a href="/original">Home</a>
+            
+        </nav>
+    </header>
+
+    <!-- Profile Form -->
+    <div class="profile-form-container">
+        <h2>Create Volleyball Player Profile</h2>
+        <form action="/volleyball" method="POST">
+            <div class="form-group">
+                <label for="player-name">Player Name:</label>
+                <input type="text" id="player-name" name="player_name" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+                <label for="player-age">Age:</label>
+                <input type="number" id="player-age" name="player_age" placeholder="Enter your age" min="0">
+            </div>
+            <div class="form-group">
+                <label for="player-location">Location</label>
+                <input type="text" id="player-location" name="player_location" placeholder="Enter your location" required>
+            </div>
+            <div class="form-group">
+                <label for="height">Height (cm):</label>
+                <input type="number" id="player-height" name="player_height" placeholder="Enter your height" min="140"required>
+            </div>
+            <div class="form-group">
+                <label for="player-position">Position:</label>
+                <select id="player-position" name="player_position" required>
+                    <option value="" disabled selected>Select your position</option>
+                    <option value="Setter">Setter</option>
+                    <option value="Outside Hitter">Outside Hitter</option>
+                    <option value="Opposite Hitter">Opposite Hitter</option>
+                    <option value="Middle Blocker">Middle Blocker</option>
+                    <option value="Libero">Libero</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="experience_level">Experience Level:</label>
+                <select id="experience_level" name="experience_level" required>
+                    <option value="" disabled selected>Select experience level</option>
+                    <option value="Beginner">Beginner</option>
+                    <option value="Intermediate">Intermediate</option>
+                    <option value="Professional">Professional</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="player-contact-number">Contact Number:</label>
+                <input type="tel" id="player-contact-number" name="player_contact_number" placeholder="Enter your Contact Number" required 
+                       pattern="^[0-9]{1,10}$" title="Please enter a valid phone number (up to 10 digits)">
+            </div>
+            <button type="submit">Create Profile</button>
+        </form>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 KINESIS. All rights reserved.</p>
+        <div class="social-links">
+            <a href="https://www.facebook.com/">Facebook</a> | 
+            <a href="https://twitter.com/">Twitter</a> | 
+            <a href="https://www.instagram.com/">Instagram</a>
+        </div>
+        <nav>
+            <a href="#privacy">Privacy Policy</a> |
+            <a href="#terms">Terms of Service</a> |
+            <a href="#contact">Contact Us</a>
+        </nav>
+    </footer>
+
+</body>
+</html>

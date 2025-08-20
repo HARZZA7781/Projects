@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filter Player Profiles</title>
+    <link rel="icon" type="image/x-icon" href="../static/logo.png">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ece9e6, #ffffff);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+
+        /* Header Styling */
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .heading {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        /* Form Styling */
+        .search-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .label {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #555;
+            width: 100%;
+            text-align: left;
+        }
+
+        .input-field {
+            width: 100%;
+            max-width: 600px;
+            padding: 12px;
+            font-size: 1rem;
+            border: 1px solid #dcdcdc;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            background-color: #f9f9f9;
+        }
+
+        .input-field:focus {
+            border-color: #3498db;
+            background-color: #ffffff;
+            outline: none;
+            box-shadow: 0 0 8px rgba(52, 152, 219, 0.2);
+        }
+
+        .submit-button {
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            background: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .submit-button:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .submit-button:active {
+            transform: translateY(0);
+        }
+
+        /* Divider */
+        .divider {
+            border: 0;
+            height: 1px;
+            background: #e5e5e5;
+            margin: 30px 0;
+        }
+
+        /* Players Section */
+        .players-heading {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .player-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .player-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .player-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .player-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #34495e;
+        }
+
+        .player-details {
+            font-size: 1rem;
+            color: #555;
+            margin-top: 10px;
+        }
+
+        .player-details span {
+            display: block;
+            margin-top: 4px;
+        }
+
+        .no-players {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #e74c3c;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h2 class="heading">Filter Hockey Players </h2>
+        </header>
+
+        <form action="/filter_hockey" method="POST" class="search-form">
+            <label for="location" class="label">Enter Location:</label>
+            <input type="text" name="location" placeholder="Enter location" class="input-field" required>
+            <button type="submit" class="submit-button">Search</button>
+        </form>
+
+        <hr class="divider">
+
+        <h3 class="players-heading">Players Found:</h3>
+        <ul class="player-list">
+            {% for player in players %}
+                <li class="player-item">
+                    <strong class="player-name">{{ player[1] }}</strong> ({{ player[2] }} years old)<br>
+                    <div class="player-details">
+                        <span>Location: {{ player[3] }}</span>
+                        <span>Height: {{ player[4] }} cm</span>
+                        <span>Position: {{ player[5] }}</span>
+                        <span>Experience Level: {{ player[6] }}</span>
+                        <span>Contact: {{ player[7] }}</span>
+                    </div>
+                </li>
+            {% else %}
+                <p class="no-players">No players found for this location.</p>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
